@@ -149,4 +149,72 @@
   (func $distance (param $x i32) (param $y i32) (result i32)
     (i32.sub (local.get $x) (local.get $y))
   )
+  ;; Determine if a move is valid
+  (func $isValidMove (param $fromX i32) (param $fromY i32) (param $toX i32) (param $toY i32) (result i32)
+    (local $player i32)
+    (local $target i32)
+    (local.set $player (call $getPiece (local.get $fromX) (local.get $fromY)))
+    (local.set $target (call $getPiece (local.get $toX) (local.get $toY)))
+    (if (result i32)
+      (block (result i32)
+        (i32.and
+          (call $validJumpDistance (local.get $fromY) (local.get $toY))
+          (i32.and
+            (call $isPlayerTurn (local.get $player))
+            ;; target must be unoccupied
+            (i32.eq (local.get $target) (i32.const 0))
+          )
+        )
+      )
+      (then 
+        (i32.const 1)
+      )
+      (else
+        (i32.const 0)
+      )
+    )
+  )
+  ;; Ensure travel is 1 or 2 squares
+  (func $validJumpDistance (param $from i32) (param $to i32) (result i32)
+    (local $d i32)
+    (local.set $d
+      (if (result i32)
+        (i32.gt_s (local.get $to) (local.get $from))
+        (then (call $distance (local.get $to) (local.get $from)))
+        (else (call $distance (local.get $from) (local.get $to)))
+      )
+    )
+    (i32.le_u
+      (local.get $d)
+      (i32.const 2)
+    )
+  )
+  ;; Exported move function to be called by the game host
+  (func $move (param $fromX i32) (param $fromY i32) (param $toX i32) (param $toY i32) (result i32)
+    (if (result i32)
+      (block (result i32)
+        (call $isValidMove (local.get $fromX) (local.get $fromY) (local.get $toX) (local.get $toY))
+      )
+      (then 
+        (call $do_move (local.get $fromX) (local.get $fromY) (local.get $toX) (local.get $toY))
+      )
+      (else (i32.const 0))
+    )
+  )
+  ;; Internal move function, performs actual move post-validation of target. 
+  ;; Currently not handled: 
+  ;;  - removing opponent piece during a jump
+  ;;  - detecting win condition
+  (func $do_move (param $fromX i32) (param $fromY i32) (param $toX i32) (param $toY i32) (result i32)
+    (local $curpiece i32)
+    (local.set $curpiece (call $getPiece (local.get $fromX) (local.get $fromY)))
+
+    (call $toggleTurnOwner)
+    (call $setPiece (local.get $toX) (local.get $toY) (local.get $curpiece))
+    (call $setPiece (local.get $fromX) (local.get $fromY) (i32.const 0))
+    (if (call $shouldCrown (local.get $toY) (local.get $curpiece))
+      (then (call $crownPiece (local.get $toX) (local.get $toY))))
+    (call $nofity_piecemoved (local.get $fromX) (local.get $fromY) (local.get $toX) (local.get $toY)) 
+    (i32.const 1)
+  )
 )
