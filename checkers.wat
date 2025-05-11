@@ -236,75 +236,45 @@
     (call $setPiece (i32.const 4) (i32.const 0) (i32.const 1))
     (call $setPiece (i32.const 6) (i32.const 0) (i32.const 1))
 
-    ;; Place pieces on the row 1
-    (call $setPiece (i32.const 1) (i32.const 1) (i32.const 2))
-    (call $setPiece (i32.const 3) (i32.const 1) (i32.const 2))
-    (call $setPiece (i32.const 5) (i32.const 1) (i32.const 2))
-    (call $setPiece (i32.const 7) (i32.const 1) (i32.const 2))
+    ;; Place black pieces (1) on rows 0-2
+    ;; Row 0 (black)
+    (call $setPiece (i32.const 1) (i32.const 0) (i32.const 1))
+    (call $setPiece (i32.const 3) (i32.const 0) (i32.const 1))
+    (call $setPiece (i32.const 5) (i32.const 0) (i32.const 1))
+    (call $setPiece (i32.const 7) (i32.const 0) (i32.const 1))
+
+    ;; Row 1 (black)
     (call $setPiece (i32.const 0) (i32.const 1) (i32.const 1))
     (call $setPiece (i32.const 2) (i32.const 1) (i32.const 1))
     (call $setPiece (i32.const 4) (i32.const 1) (i32.const 1))
     (call $setPiece (i32.const 6) (i32.const 1) (i32.const 1))
 
-    ;; Place pieces on the row 2
-    (call $setPiece (i32.const 1) (i32.const 2) (i32.const 2))
-    (call $setPiece (i32.const 3) (i32.const 2) (i32.const 2))
-    (call $setPiece (i32.const 5) (i32.const 2) (i32.const 2))
-    (call $setPiece (i32.const 7) (i32.const 2) (i32.const 2))
-    (call $setPiece (i32.const 0) (i32.const 2) (i32.const 1))
-    (call $setPiece (i32.const 2) (i32.const 2) (i32.const 1))
-    (call $setPiece (i32.const 4) (i32.const 2) (i32.const 1))
-    (call $setPiece (i32.const 6) (i32.const 2) (i32.const 1))
+    ;; Row 2 (black)
+    (call $setPiece (i32.const 1) (i32.const 2) (i32.const 1))
+    (call $setPiece (i32.const 3) (i32.const 2) (i32.const 1))
+    (call $setPiece (i32.const 5) (i32.const 2) (i32.const 1))
+    (call $setPiece (i32.const 7) (i32.const 2) (i32.const 1))
 
-    ;; Place pieces on the row 3
-    (call $setPiece (i32.const 1) (i32.const 3) (i32.const 2))
-    (call $setPiece (i32.const 3) (i32.const 3) (i32.const 2))
-    (call $setPiece (i32.const 5) (i32.const 3) (i32.const 2))
-    (call $setPiece (i32.const 7) (i32.const 3) (i32.const 2))
-    (call $setPiece (i32.const 0) (i32.const 3) (i32.const 1))
-    (call $setPiece (i32.const 2) (i32.const 3) (i32.const 1))
-    (call $setPiece (i32.const 4) (i32.const 3) (i32.const 1))
-    (call $setPiece (i32.const 6) (i32.const 3) (i32.const 1))
+    ;; Rows 3 and 4 are empty - no need to explicitly set them to 0
 
-    ;; Place pieces on the row 4
-    (call $setPiece (i32.const 1) (i32.const 4) (i32.const 2))
-    (call $setPiece (i32.const 3) (i32.const 4) (i32.const 2))
-    (call $setPiece (i32.const 5) (i32.const 4) (i32.const 2))
-    (call $setPiece (i32.const 7) (i32.const 4) (i32.const 2))
-    (call $setPiece (i32.const 0) (i32.const 4) (i32.const 1))
-    (call $setPiece (i32.const 2) (i32.const 4) (i32.const 1))
-    (call $setPiece (i32.const 4) (i32.const 4) (i32.const 1))
-    (call $setPiece (i32.const 6) (i32.const 4) (i32.const 1))
+    ;; Place white pieces (2) on rows 5-7
+    ;; Row 5 (white)
+    (call $setPiece (i32.const 0) (i32.const 5) (i32.const 2))
+    (call $setPiece (i32.const 2) (i32.const 5) (i32.const 2))
+    (call $setPiece (i32.const 4) (i32.const 5) (i32.const 2))
+    (call $setPiece (i32.const 6) (i32.const 5) (i32.const 2))
 
-    ;; Place pieces on the row 5
-    (call $setPiece (i32.const 1) (i32.const 5) (i32.const 2))
-    (call $setPiece (i32.const 3) (i32.const 5) (i32.const 2))
-    (call $setPiece (i32.const 5) (i32.const 5) (i32.const 2))
-    (call $setPiece (i32.const 7) (i32.const 5) (i32.const 2))
-    (call $setPiece (i32.const 0) (i32.const 5) (i32.const 1))
-    (call $setPiece (i32.const 2) (i32.const 5) (i32.const 1))
-    (call $setPiece (i32.const 4) (i32.const 5) (i32.const 1))
-    (call $setPiece (i32.const 6) (i32.const 5) (i32.const 1))
-
-    ;; Place pieces on the row 6
+    ;; Row 6 (white)
     (call $setPiece (i32.const 1) (i32.const 6) (i32.const 2))
     (call $setPiece (i32.const 3) (i32.const 6) (i32.const 2))
     (call $setPiece (i32.const 5) (i32.const 6) (i32.const 2))
     (call $setPiece (i32.const 7) (i32.const 6) (i32.const 2))
-    (call $setPiece (i32.const 0) (i32.const 6) (i32.const 1))
-    (call $setPiece (i32.const 2) (i32.const 6) (i32.const 1))
-    (call $setPiece (i32.const 4) (i32.const 6) (i32.const 1))
-    (call $setPiece (i32.const 6) (i32.const 6) (i32.const 1))
 
-    ;; Place pieces on the row 7
-    (call $setPiece (i32.const 1) (i32.const 7) (i32.const 2))
-    (call $setPiece (i32.const 3) (i32.const 7) (i32.const 2))
-    (call $setPiece (i32.const 5) (i32.const 7) (i32.const 2))
-    (call $setPiece (i32.const 7) (i32.const 7) (i32.const 2))
-    (call $setPiece (i32.const 0) (i32.const 7) (i32.const 1))
-    (call $setPiece (i32.const 2) (i32.const 7) (i32.const 1))
-    (call $setPiece (i32.const 4) (i32.const 7) (i32.const 1))
-    (call $setPiece (i32.const 6) (i32.const 7) (i32.const 1))
+    ;; Row 7 (white)
+    (call $setPiece (i32.const 0) (i32.const 7) (i32.const 2))
+    (call $setPiece (i32.const 2) (i32.const 7) (i32.const 2))
+    (call $setPiece (i32.const 4) (i32.const 7) (i32.const 2))
+    (call $setPiece (i32.const 6) (i32.const 7) (i32.const 2))
 
     ;; Assign initial turn owner, black goes first
     (call $setTurnOwner (i32.const 1))
