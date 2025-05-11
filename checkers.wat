@@ -1,9 +1,15 @@
 (module
+  ;; Define module events
+  (import "events" "piececrowned" (func $nofity_piececrowned (param $pieceX i32) (param $pieceY i32)))
+  (import "events" "piecemoved" (func $nofity_piecemoved (param $fromX i32) (param $fromY i32) (param $toX i32) (param $toY i32)))
+
   (memory $mem 1)
+  ;; Global variables
   (global $WHITE i32 (i32.const 2))
   (global $BLACK i32 (i32.const 1))
   (global $CROWN i32 (i32.const 4))
   (global $currentTurn (mut i32) (i32.const 0))
+
   (func $indexForPosition (param $x i32) (param $y i32) (result i32)
     (i32.add
       (i32.mul
@@ -217,4 +223,98 @@
     (call $nofity_piecemoved (local.get $fromX) (local.get $fromY) (local.get $toX) (local.get $toY)) 
     (i32.const 1)
   )
+  ;; Manually place each piece on the board to initialize the game
+  (func $initBoard
+    ;; Place the white pieces at the top of the board
+    (call $setPiece (i32.const 1) (i32.const 0) (i32.const 2))
+    (call $setPiece (i32.const 3) (i32.const 0) (i32.const 2))
+    (call $setPiece (i32.const 5) (i32.const 0) (i32.const 2))
+    (call $setPiece (i32.const 7) (i32.const 0) (i32.const 2))
+    ;; Place the black pieces at the top of the board
+    (call $setPiece (i32.const 0) (i32.const 0) (i32.const 1))
+    (call $setPiece (i32.const 2) (i32.const 0) (i32.const 1))
+    (call $setPiece (i32.const 4) (i32.const 0) (i32.const 1))
+    (call $setPiece (i32.const 6) (i32.const 0) (i32.const 1))
+
+    ;; Place pieces on the row 1
+    (call $setPiece (i32.const 1) (i32.const 1) (i32.const 2))
+    (call $setPiece (i32.const 3) (i32.const 1) (i32.const 2))
+    (call $setPiece (i32.const 5) (i32.const 1) (i32.const 2))
+    (call $setPiece (i32.const 7) (i32.const 1) (i32.const 2))
+    (call $setPiece (i32.const 0) (i32.const 1) (i32.const 1))
+    (call $setPiece (i32.const 2) (i32.const 1) (i32.const 1))
+    (call $setPiece (i32.const 4) (i32.const 1) (i32.const 1))
+    (call $setPiece (i32.const 6) (i32.const 1) (i32.const 1))
+
+    ;; Place pieces on the row 2
+    (call $setPiece (i32.const 1) (i32.const 2) (i32.const 2))
+    (call $setPiece (i32.const 3) (i32.const 2) (i32.const 2))
+    (call $setPiece (i32.const 5) (i32.const 2) (i32.const 2))
+    (call $setPiece (i32.const 7) (i32.const 2) (i32.const 2))
+    (call $setPiece (i32.const 0) (i32.const 2) (i32.const 1))
+    (call $setPiece (i32.const 2) (i32.const 2) (i32.const 1))
+    (call $setPiece (i32.const 4) (i32.const 2) (i32.const 1))
+    (call $setPiece (i32.const 6) (i32.const 2) (i32.const 1))
+
+    ;; Place pieces on the row 3
+    (call $setPiece (i32.const 1) (i32.const 3) (i32.const 2))
+    (call $setPiece (i32.const 3) (i32.const 3) (i32.const 2))
+    (call $setPiece (i32.const 5) (i32.const 3) (i32.const 2))
+    (call $setPiece (i32.const 7) (i32.const 3) (i32.const 2))
+    (call $setPiece (i32.const 0) (i32.const 3) (i32.const 1))
+    (call $setPiece (i32.const 2) (i32.const 3) (i32.const 1))
+    (call $setPiece (i32.const 4) (i32.const 3) (i32.const 1))
+    (call $setPiece (i32.const 6) (i32.const 3) (i32.const 1))
+
+    ;; Place pieces on the row 4
+    (call $setPiece (i32.const 1) (i32.const 4) (i32.const 2))
+    (call $setPiece (i32.const 3) (i32.const 4) (i32.const 2))
+    (call $setPiece (i32.const 5) (i32.const 4) (i32.const 2))
+    (call $setPiece (i32.const 7) (i32.const 4) (i32.const 2))
+    (call $setPiece (i32.const 0) (i32.const 4) (i32.const 1))
+    (call $setPiece (i32.const 2) (i32.const 4) (i32.const 1))
+    (call $setPiece (i32.const 4) (i32.const 4) (i32.const 1))
+    (call $setPiece (i32.const 6) (i32.const 4) (i32.const 1))
+
+    ;; Place pieces on the row 5
+    (call $setPiece (i32.const 1) (i32.const 5) (i32.const 2))
+    (call $setPiece (i32.const 3) (i32.const 5) (i32.const 2))
+    (call $setPiece (i32.const 5) (i32.const 5) (i32.const 2))
+    (call $setPiece (i32.const 7) (i32.const 5) (i32.const 2))
+    (call $setPiece (i32.const 0) (i32.const 5) (i32.const 1))
+    (call $setPiece (i32.const 2) (i32.const 5) (i32.const 1))
+    (call $setPiece (i32.const 4) (i32.const 5) (i32.const 1))
+    (call $setPiece (i32.const 6) (i32.const 5) (i32.const 1))
+
+    ;; Place pieces on the row 6
+    (call $setPiece (i32.const 1) (i32.const 6) (i32.const 2))
+    (call $setPiece (i32.const 3) (i32.const 6) (i32.const 2))
+    (call $setPiece (i32.const 5) (i32.const 6) (i32.const 2))
+    (call $setPiece (i32.const 7) (i32.const 6) (i32.const 2))
+    (call $setPiece (i32.const 0) (i32.const 6) (i32.const 1))
+    (call $setPiece (i32.const 2) (i32.const 6) (i32.const 1))
+    (call $setPiece (i32.const 4) (i32.const 6) (i32.const 1))
+    (call $setPiece (i32.const 6) (i32.const 6) (i32.const 1))
+
+    ;; Place pieces on the row 7
+    (call $setPiece (i32.const 1) (i32.const 7) (i32.const 2))
+    (call $setPiece (i32.const 3) (i32.const 7) (i32.const 2))
+    (call $setPiece (i32.const 5) (i32.const 7) (i32.const 2))
+    (call $setPiece (i32.const 7) (i32.const 7) (i32.const 2))
+    (call $setPiece (i32.const 0) (i32.const 7) (i32.const 1))
+    (call $setPiece (i32.const 2) (i32.const 7) (i32.const 1))
+    (call $setPiece (i32.const 4) (i32.const 7) (i32.const 1))
+    (call $setPiece (i32.const 6) (i32.const 7) (i32.const 1))
+
+    ;; Assign initial turn owner, black goes first
+    (call $setTurnOwner (i32.const 1))
+  )
+ 
+  ;; Define module exports
+  (export "getPiece" (func $getPiece))
+  (export "isCrowned" (func $isCrowned))
+  (export "initBoard" (func $initBoard))
+  (export "getTurnOwner" (func $getTurnOwner))
+  (export "move" (func $move))
+  (export "memory" (memory $mem))
 )
