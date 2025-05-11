@@ -1,7 +1,7 @@
 (module
   ;; Define module events
-  (import "events" "piececrowned" (func $nofity_piececrowned (param $pieceX i32) (param $pieceY i32)))
-  (import "events" "piecemoved" (func $nofity_piecemoved (param $fromX i32) (param $fromY i32) (param $toX i32) (param $toY i32)))
+  (import "events" "piececrowned" (func $notify_piececrowned (param $pieceX i32) (param $pieceY i32)))
+  (import "events" "piecemoved" (func $notify_piecemoved (param $fromX i32) (param $fromY i32) (param $toX i32) (param $toY i32)))
 
   (memory $mem 1)
   ;; Global variables
@@ -150,7 +150,7 @@
     (local.set $piece (call $getPiece (local.get $x) (local.get $y)))
     (call $setPiece (local.get $x) (local.get $y)
       (call $withCrown (local.get $piece)))
-    (call $nofity_piececrowned (local.get $x) (local.get $y))
+    (call $notify_piececrowned (local.get $x) (local.get $y))
   )
   (func $distance (param $x i32) (param $y i32) (result i32)
     (i32.sub (local.get $x) (local.get $y))
@@ -220,7 +220,7 @@
     (call $setPiece (local.get $fromX) (local.get $fromY) (i32.const 0))
     (if (call $shouldCrown (local.get $toY) (local.get $curpiece))
       (then (call $crownPiece (local.get $toX) (local.get $toY))))
-    (call $nofity_piecemoved (local.get $fromX) (local.get $fromY) (local.get $toX) (local.get $toY)) 
+    (call $notify_piecemoved (local.get $fromX) (local.get $fromY) (local.get $toX) (local.get $toY)) 
     (i32.const 1)
   )
   ;; Manually place each piece on the board to initialize the game
